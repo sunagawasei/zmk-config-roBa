@@ -74,14 +74,18 @@
         screenshot_file: screenshot_file {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LS(LG(N4))>;
+            bindings = <&macro_press &kp LSHFT &kp LGUI>
+                     , <&macro_tap &kp N4>
+                     , <&macro_release &kp LSHFT &kp LGUI>;
             label = "SCREENSHOT_FILE";
         };
 
         screenshot_clip: screenshot_clip {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LS(LC(LG(N4)))>;
+            bindings = <&macro_press &kp LSHFT &kp LCTRL &kp LGUI>
+                     , <&macro_tap &kp N4>
+                     , <&macro_release &kp LSHFT &kp LCTRL &kp LGUI>;
             label = "SCREENSHOT_CLIP";
         };
 
