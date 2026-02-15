@@ -74,9 +74,7 @@
         screenshot_file: screenshot_file {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp LSHFT &kp LGUI>
-                     , <&macro_tap &kp N4>
-                     , <&macro_release &kp LSHFT &kp LGUI>;
+            bindings = <&kp LG(LS(N4))>;
             label = "SCREENSHOT_FILE";
         };
 
