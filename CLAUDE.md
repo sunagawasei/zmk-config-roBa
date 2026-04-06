@@ -87,3 +87,29 @@ keymap-drawer/      # キーマップ可視化（YAML・SVG、draw.ymlで生成�
 | トラックボール感度・動作 | `boards/shields/roBa/roBa_R.conf`のCONFIG_PMW3610_* |
 | 物理配線変更 | `boards/shields/roBa/roBa.dtsi`のkscan0とdefault_transform |
 | 外部モジュール追加 | `config/west.yml` |
+
+### PMW3610主要チューニングパラメータ
+
+| パラメータ | 現在値 | 説明 |
+|-----------|--------|------|
+| `CONFIG_PMW3610_CPI` | 400 | 通常時のカーソル感度 |
+| `CONFIG_PMW3610_AUTOMOUSE_TIMEOUT_MS` | 700 | 動き検知後にMOUSEレイヤーを維持する時間(ms) |
+| `CONFIG_PMW3610_MOVEMENT_THRESHOLD` | 3 | automouse-layer遷移の最小移動量 |
+| `CONFIG_PMW3610_SCROLL_TICK` | 16 | スクロール1ステップの移動量 |
+
+### キーマップ構造のポイント
+
+- **comboのkey-positions**: keymapの全キーを左から右・上から下で連番付けした番号（0始まり）
+- **lt_to_layer_0ビヘイビア**: ホールドで指定レイヤーへmo、タップでlayer_0へ戻るカスタムホールドタップ
+- **automouse-layer**: PMW3610ドライバーが移動検知時に自動でlayer 4（MOUSE）へ遷移、タイムアウト後にdefaultへ戻る
+- **scroll-layers**: layer 5（SCROLL）でトラックボールをスクロール入力として扱う
+- **mt グローバル設定**: `tap-preferred`フレーバー、tapping-term 200ms（roBa.keymap先頭で定義）
+
+### トラックボールSPIピン配線（右手側）
+
+| 信号 | nRF52840ピン |
+|------|-------------|
+| SCK | P0.5 |
+| MOSI/MISO | P0.4（半二重） |
+| CS | P0.9 |
+| IRQ | P0.2 |
